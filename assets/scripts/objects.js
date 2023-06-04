@@ -7,4 +7,9 @@ const person = {
     }
 }
 
-person.greet()
+// person.age = 53;
+// delete person.age;
+person.age = undefined
+person.isAdmin = true
+
+console.log(person)
