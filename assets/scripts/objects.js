@@ -11,7 +11,7 @@ let person = {
     hobbies: ['Sports', 'Cooking'],
     [userChosenKeyName]:'One',
     greet: function(){
-        alert('Hello you')
+        alert('Hello You')
     },
     1.5: 'hello'
 
