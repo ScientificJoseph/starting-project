@@ -3,7 +3,7 @@ const person = {
     age: 52,
     hobbies: ['sports', 'Cooking'],
     greet: function(){
-        alert('Hello to you')
+        alert('Hello you')
     }
 }
 
