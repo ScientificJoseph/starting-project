@@ -9,7 +9,8 @@ const person = {
 
 // person.age = 53;
 // delete person.age;
-person.age = undefined
-person.isAdmin = true
+// person.age = undefined;
+// person.age = null;
+person.isAdmin = true;
 
 console.log(person)
