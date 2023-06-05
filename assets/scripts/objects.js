@@ -4,7 +4,6 @@ const filter = document.getElementById('filter')
 const searchbtn = document.getElementById('search-btn') 
 const movieList = document.getElementById('movie-list');
 
-
 cardColor.style['backgroundColor'] = 'gold'
 addbtn.style['backgroundColor'] = 'red'
 filter.style['backgroundColor'] = 'green'
@@ -43,8 +42,9 @@ delete person.age;
 // person.age = null;
 person.isAdmin = true;
 
+
 const keyName = 'first name'
 
 console.log(person[keyName]);
-console.log(person[1.5])
 console.log(person['level'])
+console.log(person[1.5])
