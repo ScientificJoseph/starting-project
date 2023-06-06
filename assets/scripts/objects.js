@@ -1,11 +1,12 @@
 const addMovieBtn = document.getElementById('add-movie-btn');
 const searchBtn = document.getElementById('search-btn');
 
+const movies = [];
 
-cardColor.style['backgroundColor'] = 'gold'
-addbtn.style['backgroundColor'] = 'red'
-filter.style['backgroundColor'] = 'green'
-searchbtn.style['backgroundColor'] = 'black'
+const addMovieHandler = () => {
+    const title = document.getElementById('title').value;
+    const extraName = document.getElementById('extra-name').value;
+    const extraValue = document.getElementById('extra-value').value;
 
     if (
         title.trim() === '' ||
@@ -30,16 +31,4 @@ searchbtn.style['backgroundColor'] = 'black'
     console.log(newMovie)
 };
 
-}
-
-// person.age = 53;
-delete person.age;
-// person.age = undefined;
-// person.age = null;
-person.isAdmin = true;
-
-const keyName = 'first name'
-
-console.log(person[keyName]);
-console.log(person[1.5])
-console.log(person['level'])
+addMovieBtn.addEventListener('click', addMovieHandler)
