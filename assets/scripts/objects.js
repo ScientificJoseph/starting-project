@@ -23,10 +23,13 @@ const addMovieHandler = () => {
        },
        id: Math.random()
     };
-        document.querySelectorAll('#user-input input').forEach((input)=>{
+        const inputs = document.querySelectorAll('#user-input input')
+        document.querySelectorAll('#user-input input').forEach
+        ((input)=>{
             console.log(input)
             return input.value = '';
         })
+    console.log(inputs)
     movies.push(newMovie)
     console.log(newMovie)
 };
