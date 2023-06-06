@@ -25,11 +25,10 @@ const addMovieHandler = () => {
     };
         document.querySelectorAll('#user-input input').forEach((input)=>{
             console.log(input)
-            return input.value = ''
+            return input.value = '';
         })
     movies.push(newMovie)
     console.log(newMovie)
-
 };
 
 addMovieBtn.addEventListener('click', addMovieHandler)
