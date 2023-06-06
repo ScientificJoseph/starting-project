@@ -23,11 +23,13 @@ const addMovieHandler = () => {
        },
        id: Math.random()
     };
-    document.getElementById('title').value = ''
-    document.getElementById('extra-name').value = ''
-    document.getElementById('extra-value').value = ''
+        document.querySelectorAll('#user-input input').forEach((input)=>{
+            console.log(input)
+            return input.value = ''
+        })
     movies.push(newMovie)
     console.log(newMovie)
+
 };
 
 addMovieBtn.addEventListener('click', addMovieHandler)
