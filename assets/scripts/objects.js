@@ -48,7 +48,6 @@ const addMovieHandler = () => {
     };
         document.querySelectorAll('#user-input input').forEach
         ((input)=>{
-       
             return input.value = '';
         })
 
