@@ -11,6 +11,7 @@ const renderMovies = () => {
     } else {
         movieList.classList.add('visible')
     }
+    
     movieList.innerHTML = '';
     movies.forEach((movie) => {
         const movieEl = document.createElement('li')
