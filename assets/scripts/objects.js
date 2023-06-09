@@ -12,7 +12,6 @@ const renderMovies = (filter = '') => {
         movieList.classList.add('visible')
     }
     movieList.innerHTML = '';
-
     const filteredMovies = !filter 
     ? movies 
     : movies.filter(movie => movie.info.title.includes(filter))
