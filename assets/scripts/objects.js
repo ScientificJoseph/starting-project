@@ -1,33 +1,41 @@
 const addMovieBtn = document.getElementById('add-movie-btn');
-const searchBtn = document.getElementById('search-btn');
+const searchBtn = document.getElementById('search-btn')
 
-const movies = [];
+const movies = []
 
 const renderMovies = (filter = '') => {
-    const movieList = document.getElementById('movie-list');
+    const movieList = document.getElementById('movie-list')
+ 
     if (movies.length === 0) {
-        movieList.classList.remove('visivle')
+        movieList.classList.remove('visible')
         return
     } else {
         movieList.classList.add('visible')
+
     }
     movieList.innerHTML = '';
+
     const filteredMovies = !filter 
     ? movies 
-    : movies.filter(movie => movie.info.title.includes(filter))
+    : movies.filter(movie => movie.info.title.includes(filter));
 
-    filteredMovies.forEach((movie) => {
-        const movieEl = document.createElement('li')
-        // movieEl.textContent = movie.info.title;
-        let text = movie.info.title + ' - ';
-        for (const key in movie.info) {
-            if (key !== 'title') {
-                text = text + `${key}: ${movie.info[key]}`
+    filteredMovies.forEach((movie)=>{
+        const list = document.createElement('li')
+        const { info, ...otherProps } = movie;
+        console.log('others ',otherProps);
+        // const { title: movieTitle } = info;
+        let { getFormattedTitle } = movie;
+        // getFormattedTitle = getFormattedTitle.bind(movie) // prepares for function use
+        let text = getFormattedTitle.call(movie) + ' - '
+        for (const key in info) {
+            if (key !== 'title' && key !== '_title') {
+                text = text + `${key}: ${info[key]} `
             }
         }
-        movieEl.textContent = text
-        movieList.append(movieEl);
-    });
+        list.textContent = text
+        movieList.appendChild(list)
+    })
+    
 }
 
 const addMovieHandler = () => {
@@ -36,7 +44,7 @@ const addMovieHandler = () => {
     const extraValue = document.getElementById('extra-value').value;
 
     if (
-        title.trim() === '' ||
+        // title.trim() === '' ||
         extraName.trim() === '' ||
         extraValue.trim() === ''
     ) {
@@ -44,26 +52,92 @@ const addMovieHandler = () => {
     }
 
     const newMovie = {
-       info:{
-        title,
-        [extraName]: extraValue
-       },
-       id: Math.random()
+        info: {
+            // title,
+            set title(val) {
+                if (val.trim() === '') {
+                    this._title = 'DEFAULT'
+                    return
+                }
+                this._title = val
+            },
+            get title() {
+                return this._title;
+            },
+            [extraName]: extraValue
+     },
+        id: Math.random(),
+        getFormattedTitle() {
+            console.log(this)
+            return this.info.title.toUpperCase();
+        }
     };
-        document.querySelectorAll('#user-input input').forEach
-        ((input)=>{
-            return input.value = '';
-        })
+
+    newMovie.info.title = title;
+    console.log(newMovie.info.title)
 
     movies.push(newMovie)
+    document.querySelectorAll('#user-input input').forEach((input)=>{
+        return input.value = ""; 
+    })
+
     renderMovies()
 };
 
 const searchMovieHandler = () => {
-    const filterTerm = document.getElementById('filter-title').value
-    renderMovies(filterTerm)
-}
+    console.log(this)
+    const filterTerm = document.getElementById('filter-title').value;
+    renderMovies(filterTerm);
+    document.getElementById('filter-title').value = '';
+};
 
 addMovieBtn.addEventListener('click', addMovieHandler);
-searchBtn.addEventListener('click', searchMovieHandler);
+searchBtn.addEventListener('click', searchMovieHandler)
 
+// Object Spread Operator.
+const person = {
+    name: 'Joseph',
+    hobbies: ['Music','Coding']
+};
+
+const anotherPerson = person;
+person.age = 50;
+
+const person2 = { ...person };
+person.age = 51;
+person.hobbies.push('Fitness')
+
+const person3 = { ...person, age: 49, hobbies:[...person.hobbies]}//tek to overwrite original valu
+const last = person.hobbies.pop()
+
+// console.log(person)
+// console.log(anotherPerson)
+// console.log(person2)
+// console.log(person3)
+// console.log(last)
+
+// Object.assign
+
+const user = {
+    name: 'Joseph'
+}
+
+// const user2 = Object.assign({}, user)
+// user.name = 'Joe'
+// console.log(user)
+// console.log(user2)
+
+// Object Destructuring
+// this and arrow functions
+
+const members = {
+    teamName: 'Blue Rockets',
+    people: ['Max', 'Joseph'],
+    getTemMembers(){
+        this.people.forEach(p =>{
+            console.log(p + ' - ' + this.teamName)
+        })
+    }
+};
+
+members.getTemMembers()
